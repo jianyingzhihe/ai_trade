@@ -27,11 +27,11 @@ class PromptGenerator:
         indicators_3m = self._calculate_indicators(price_data_3m)
         indicators_4h = self._calculate_indicators_4h(price_data_4h)
 
-        # btc_position = positions.get(self.instId, {})
-        coin_prompt=f"""ALL {data_collector.instId} DATA
-current_price = {indicators_3m['current_price']:.1f}, current_ema20 = {indicators_3m['ema20']:.3f}, current_macd = {indicators_3m['macd']:.3f}, current_rsi (7 period) = {indicators_3m['rsi7']:.2f}
 
-In addition, here is the latest BTC open interest and funding rate for perps (the instrument you are trading):"""
+        coin_prompt=f"""ALL {data_collector.instId} DATA
+current_price = {indicators_3m['current_price']}, current_ema20 = {indicators_3m['ema20']:.3f}, current_macd = {indicators_3m['macd']:.3f}, current_rsi (7 period) = {indicators_3m['rsi7']:.2f}
+
+In addition, here is the latest coin open interest and funding rate for perps (the instrument you are trading):"""
         if self.trade_mode == "swap":
             coin_prompt+=f"""Open Interest: Latest: {open_interest['latest']:.1f} Average: {open_interest['average']:.2f}"""
         coin_prompt+=f"""Funding Rate: {funding_rate['rate']:.5f}
@@ -85,7 +85,7 @@ ALL OF THE PRICE OR SIGNAL DATA BELOW IS ORDERED: OLDEST → NEWEST
 
 Timeframes note: Unless stated otherwise in a section title, intraday series are provided at 3‑minute intervals. If a coin uses a different interval, it is explicitly stated in that coin’s section.
 
-CURRENT MARKET STATE FOR ALL COINS"""
+CURRENT MARKET STATE FOR ALL COINS\n"""
         for each in self.data_collector.data_collectors:
             prompt+=self.generate_coin_data(each)
         return prompt
@@ -149,7 +149,7 @@ CURRENT MARKET STATE FOR ALL COINS"""
             if not rsi14_series:
                 rsi14_series = [float(round(rsi14, 2))] * min(10, len(closes))
 
-            print(f"Indicator calculation completed: Price={current_price:.1f}, EMA20={ema20:.3f}, MACD={macd_current:.3f}")
+            print(f"Indicator calculation completed: Price={current_price:.6f}, EMA20={ema20:.3f}, MACD={macd_current:.3f}")
             print(f"Data length - Price:{len(closes)}, EMA:{len(ema_series)}, MACD:{len(macd_series)}")
 
             return {

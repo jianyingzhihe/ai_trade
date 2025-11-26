@@ -39,7 +39,10 @@ class TradingBot:
             traceback.print_exc()
             return False
 
-    # def trading_cycle(self):
+    def trading_cycle(self,time_interval=60*5):
+        while True:
+            self.run_single_cycle()
+            time.sleep(time_interval)
 
     def _save_trading_record(self, prompt, ai_response, decision_data, success):
         from datetime import datetime
