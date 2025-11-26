@@ -1,6 +1,6 @@
 # Crypto Trading Bot
 
-一个基于人工智能的加密货币自动交易系统，集成了OKX交易所API和大语言模型决策引擎。
+An AI-powered cryptocurrency trading system integrating OKX exchange APIs with advanced machine learning decision-making capabilities.
 
 ## 📋 项目概述
 
