@@ -1,0 +1,5 @@
+# Ignore all files in trading_record directory
+trading_record/
+
+# Ignore .env file
+.env
