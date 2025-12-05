@@ -35,7 +35,7 @@ class TradingBot:
             success = self.trading_agent.execute_decision(decision_data)
             acc=self.trading_agent.get_balance()
             with open("acc.jsonl", "a",encoding="utf-8") as f:
-                acc["time"]=datetime.now()
+                acc["time"]=str(datetime.now())
                 acc["timestamp"]=datetime.now().timestamp()
                 f.write(json.dumps(acc, ensure_ascii=False))
             self._save_trading_record(prompt, ai_response, decision_data, success,acc)
