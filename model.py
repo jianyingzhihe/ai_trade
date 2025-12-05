@@ -2,7 +2,9 @@ from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
 import os
-SYSTEM_PROMPT = """
+
+#修改
+SYSTEM_PROMPT_SWAP = """
 # Trading Decision AI Assistant
 
 You are a professional cryptocurrency trading AI assistant. Based on the provided market data and technical indicators, make rational trading decisions.

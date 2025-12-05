@@ -39,7 +39,7 @@ class TradingBot:
             traceback.print_exc()
             return False
 
-    def trading_cycle(self,time_interval=60*5):
+    def trading_cycle(self,time_interval=60*3):
         while True:
             self.run_single_cycle()
             time.sleep(time_interval)
