@@ -278,7 +278,7 @@ if __name__ == '__main__':
     testbot = okxbot(True)
 
     # 测试余额查询
-    # usdt_balance = testbot.get_balance("USDT")
+    usdt_balance = testbot.get_balance("USDT")
 
     # 测试持仓汇总
     # summary = testbot.get_position_summary()

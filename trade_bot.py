@@ -33,7 +33,12 @@ class TradingBot:
                 print("Decision parsing failed, skipping execution")
                 return False
             success = self.trading_agent.execute_decision(decision_data)
-            self._save_trading_record(prompt, ai_response, decision_data, success)
+            acc=self.trading_agent.get_balance()
+            with open("acc.jsonl", "a",encoding="utf-8") as f:
+                acc["time"]=datetime.now()
+                acc["timestamp"]=datetime.now().timestamp()
+                f.write(json.dumps(acc, ensure_ascii=False))
+            self._save_trading_record(prompt, ai_response, decision_data, success,acc)
             return success
         except Exception as e:
             traceback.print_exc()
@@ -44,7 +49,8 @@ class TradingBot:
             self.run_single_cycle()
             time.sleep(time_interval)
 
-    def _save_trading_record(self, prompt, ai_response, decision_data, success):
+
+    def _save_trading_record(self, prompt, ai_response, decision_data, success,acc):
         from datetime import datetime
         import json
 
@@ -58,7 +64,8 @@ class TradingBot:
             'decision': decision_data,
             'prompt': prompt,
             'ai_response': ai_response,
-            'execution_time': datetime.now().isoformat()
+            'execution_time': datetime.now().isoformat(),
+            'acc': acc
         }
 
         with open(filename, 'w', encoding='utf-8') as f:
