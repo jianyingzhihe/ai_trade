@@ -38,6 +38,7 @@ class TradingBot:
                 acc["time"]=str(datetime.now())
                 acc["timestamp"]=datetime.now().timestamp()
                 f.write(json.dumps(acc, ensure_ascii=False))
+                f.write("\n")
             self._save_trading_record(prompt, ai_response, decision_data, success,acc)
             return success
         except Exception as e:

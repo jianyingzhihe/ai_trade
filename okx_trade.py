@@ -95,7 +95,7 @@ class okxbot():
             active_positions = []
 
             for pos in positions:
-                print(pos)
+                # print(pos)
                 pos_qty = float(pos.get('pos', 0))
                 if pos_qty != 0:
                     position_info = {
